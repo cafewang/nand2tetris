@@ -1,0 +1,11 @@
+/**
+ * filter highest bit
+ */
+CHIP ThreeToTwo {
+    IN in[3];
+    OUT out[2];
+    
+    PARTS:
+    And(a=true, b=in[1], out=out[1]);
+    And(a=true, b=in[0], out=out[0]);
+}

@@ -1,0 +1,70 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux8Way16.hdl
+/**
+ * 8-way 16-bit multiplexor:
+ * out = a if sel = 000
+ *       b if sel = 001
+ *       c if sel = 010
+ *       d if sel = 011
+ *       e if sel = 100
+ *       f if sel = 101
+ *       g if sel = 110
+ *       h if sel = 111
+ */
+CHIP Mux8Way16 {
+    IN a[16], b[16], c[16], d[16],
+       e[16], f[16], g[16], h[16],
+       sel[3];
+    OUT out[16];
+
+    PARTS:
+    Not(in=sel[2], out=ns2);
+    Not(in=sel[1], out=ns1);
+    Not(in=sel[0], out=ns0);
+
+    And(a=ns2, b=ns1, out=ns2ns1);
+    And(a=ns2ns1, b=ns0, out=ns2ns1ns0);
+    Spread16(in=ns2ns1ns0, out=ns2ns1ns0arr);
+    And16(a=ns2ns1ns0arr, b=a, out=outa);
+
+    And(a=ns2ns1, b=sel[0], out=ns2ns1s0);
+    Spread16(in=ns2ns1s0, out=ns2ns1s0arr);
+    And16(a=ns2ns1s0arr, b=b, out=outb);
+
+    And(a=ns2, b=sel[1], out=ns2s1);
+    And(a=ns2s1, b=ns0, out=ns2s1ns0);
+    Spread16(in=ns2s1ns0, out=ns2s1ns0arr);
+    And16(a=ns2s1ns0arr, b=c, out=outc);
+
+    And(a=ns2s1, b=sel[0], out=ns2s1s0);
+    Spread16(in=ns2s1s0, out=ns2s1s0arr);
+    And16(a=ns2s1s0arr, b=d, out=outd);
+
+    And(a=sel[2], b=ns1, out=s2ns1);
+    And(a=s2ns1, b=ns0, out=s2ns1ns0);
+    Spread16(in=s2ns1ns0, out=s2ns1ns0arr);
+    And16(a=s2ns1ns0arr, b=e, out=oute);
+
+    And(a=s2ns1, b=sel[0], out=s2ns1s0);
+    Spread16(in=s2ns1s0, out=s2ns1s0arr);
+    And16(a=s2ns1s0arr, b=f, out=outf);
+
+    And(a=sel[2], b=sel[1], out=s2s1);
+    And(a=s2s1, b=ns0, out=s2s1ns0);
+    Spread16(in=s2s1ns0, out=s2s1ns0arr);
+    And16(a=s2s1ns0arr, b=g, out=outg);
+
+    And(a=s2s1, b=sel[0], out=s2s1s0);
+    Spread16(in=s2s1s0, out=s2s1s0arr);
+    And16(a=s2s1s0arr, b=h, out=outh);
+
+    Or16(a=outa, b=outb, out=outab);
+    Or16(a=outab, b=outc, out=outabc);
+    Or16(a=outabc, b=outd, out=outabcd);
+    Or16(a=outabcd, b=oute, out=outabcde);
+    Or16(a=outabcde, b=outf, out=outabcdef);
+    Or16(a=outabcdef, b=outg, out=outabcdefg);
+    Or16(a=outabcdefg, b=outh, out=out);
+}

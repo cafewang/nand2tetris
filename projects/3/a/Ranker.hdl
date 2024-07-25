@@ -1,0 +1,27 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Bit.hdl
+/**
+ * rank signal to out[2]
+ * if fst out=00
+ * else if snd out=01
+ * else if trd out=10
+ * else out=11
+ */
+CHIP Ranker {
+    IN fst, snd, trd;
+    OUT out[2];
+
+    PARTS:
+    Not(in=fst, out=nf);
+    Not(in=snd, out=ns);
+    Not(in=trd, out=nt);
+    And(a=nf, b=ns, out=out[1]);
+
+    And(a=ns, b=nt, out=nsnt);
+    Or(a=snd, b=nsnt, out=sndnsnt);
+    And(a=nf, b=sndnsnt, out=out[0]);
+
+
+}

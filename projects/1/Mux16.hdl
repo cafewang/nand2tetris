@@ -1,0 +1,79 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux16.hdl
+/**
+ * 16-bit multiplexor: 
+ * for i = 0, ..., 15:
+ * if (sel = 0) out[i] = a[i], else out[i] = b[i]
+ */
+CHIP Mux16 {
+    IN a[16], b[16], sel;
+    OUT out[16];
+
+    PARTS:
+    Not(in=sel, out=nots);
+    And(a=sel, b=b[0], out=leftAnd0);
+    And(a=nots, b=a[0], out=rightAnd0);
+    Or(a=leftAnd0, b=rightAnd0, out=out[0]);
+
+    And(a=sel, b=b[1], out=leftAnd1);
+    And(a=nots, b=a[1], out=rightAnd1);
+    Or(a=leftAnd1, b=rightAnd1, out=out[1]);
+
+    And(a=sel, b=b[2], out=leftAnd2);
+    And(a=nots, b=a[2], out=rightAnd2);
+    Or(a=leftAnd2, b=rightAnd2, out=out[2]);
+    
+    And(a=sel, b=b[3], out=leftAnd3);
+    And(a=nots, b=a[3], out=rightAnd3);
+    Or(a=leftAnd3, b=rightAnd3, out=out[3]);
+    
+    And(a=b[4], b=sel, out=leftAnd4);
+    And(a=nots, b=a[4], out=rightAnd4);
+    Or(a=leftAnd4, b=rightAnd4, out=out[4]);
+    
+    And(a=b[5], b=sel, out=leftAnd5);
+    And(a=nots, b=a[5], out=rightAnd5);
+    Or(a=leftAnd5, b=rightAnd5, out=out[5]);
+        
+    And(a=b[6], b=sel, out=leftAnd6);
+    And(a=nots, b=a[6], out=rightAnd6);
+    Or(a=leftAnd6, b=rightAnd6, out=out[6]);
+            
+    And(a=b[7], b=sel, out=leftAnd7);
+    And(a=nots, b=a[7], out=rightAnd7);
+    Or(a=leftAnd7, b=rightAnd7, out=out[7]);
+            
+    And(a=b[8], b=sel, out=leftAnd8);
+    And(a=nots, b=a[8], out=rightAnd8);
+    Or(a=leftAnd8, b=rightAnd8, out=out[8]);
+                
+    And(a=b[9], b=sel, out=leftAnd9);
+    And(a=nots, b=a[9], out=rightAnd9);
+    Or(a=leftAnd9, b=rightAnd9, out=out[9]);
+    
+    And(a=b[10], b=sel, out=leftAnd10);
+    And(a=nots, b=a[10], out=rightAnd10);
+    Or(a=leftAnd10, b=rightAnd10, out=out[10]);
+    
+    And(a=b[11], b=sel, out=leftAnd11);
+    And(a=nots, b=a[11], out=rightAnd11);
+    Or(a=leftAnd11, b=rightAnd11, out=out[11]);
+        
+    And(a=b[12], b=sel, out=leftAnd12);
+    And(a=nots, b=a[12], out=rightAnd12);
+    Or(a=leftAnd12, b=rightAnd12, out=out[12]);
+    
+    And(a=b[13], b=sel, out=leftAnd13);
+    And(a=nots, b=a[13], out=rightAnd13);
+    Or(a=leftAnd13, b=rightAnd13, out=out[13]);
+    
+    And(a=b[14], b=sel, out=leftAnd14);
+    And(a=nots, b=a[14], out=rightAnd14);
+    Or(a=leftAnd14, b=rightAnd14, out=out[14]);
+    
+    And(a=b[15], b=sel, out=leftAnd15);
+    And(a=nots, b=a[15], out=rightAnd15);
+    Or(a=leftAnd15, b=rightAnd15, out=out[15]);
+}

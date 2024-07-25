@@ -1,0 +1,29 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/2/FullAdder.hdl
+/**
+ * customize 16bits
+ */
+CHIP Packer {
+    IN a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15;
+    OUT a[16];
+
+    PARTS:
+    And(a=true, b=a0, out=a[0]);
+    And(a=true, b=a1, out=a[1]);
+    And(a=true, b=a2, out=a[2]);
+    And(a=true, b=a3, out=a[3]);
+    And(a=true, b=a4, out=a[4]);
+    And(a=true, b=a5, out=a[5]);
+    And(a=true, b=a6, out=a[6]);
+    And(a=true, b=a7, out=a[7]);
+    And(a=true, b=a8, out=a[8]);
+    And(a=true, b=a9, out=a[9]);
+    And(a=true, b=a10, out=a[10]);
+    And(a=true, b=a11, out=a[11]);
+    And(a=true, b=a12, out=a[12]);
+    And(a=true, b=a13, out=a[13]);
+    And(a=true, b=a14, out=a[14]);
+    And(a=true, b=a15, out=a[15]);
+}

@@ -1,0 +1,27 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Bit.hdl
+/**
+ * split an instruction into type, a/m, comp, dest and jump
+ */
+CHIP Decoder {
+    IN in[16];
+    OUT type, aorm, comp[6], dest[3], jump[3];
+
+    PARTS:
+    And(a=true, b=in[15], out=type);
+    And(a=true, b=in[12], out=aorm);
+    And(a=true, b=in[11], out=comp[5]);
+    And(a=true, b=in[10], out=comp[4]);
+    And(a=true, b=in[9], out=comp[3]);
+    And(a=true, b=in[8], out=comp[2]);
+    And(a=true, b=in[7], out=comp[1]);
+    And(a=true, b=in[6], out=comp[0]);
+    And(a=true, b=in[5], out=dest[2]);
+    And(a=true, b=in[4], out=dest[1]);
+    And(a=true, b=in[3], out=dest[0]);
+    And(a=true, b=in[2], out=jump[2]);
+    And(a=true, b=in[1], out=jump[1]);
+    And(a=true, b=in[0], out=jump[0]);
+}

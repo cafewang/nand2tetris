@@ -1,0 +1,16 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Bit.hdl
+/**
+ * split in[3] to a, b, c
+ **/
+CHIP Splitter8 {
+    IN in[3];
+    OUT a, b, c;
+
+    PARTS:
+    And(a=true, b=in[2], out=a);
+    And(a=true, b=in[1], out=b);
+    And(a=true, b=in[0], out=c);
+}

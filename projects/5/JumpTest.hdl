@@ -1,0 +1,21 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Bit.hdl
+/**
+ * decide whether to jump on jump[3], zr, ne
+ **/
+CHIP JumpTest {
+    IN jump[3], zr, ng;
+    OUT out;
+
+    PARTS:
+    And(a=zr, b=jump[1], out=zrj1);
+    And(a=ng, b=jump[2], out=ngj2);
+    Not(in=zr, out=nzr);
+    Not(in=ng, out=nng);
+    And(a=nzr, b=nng, out=nzrnng);
+    And(a=nzrnng, b=jump[0], out=nzrnngj0);
+    Or(a=zrj1, b=ngj2, out=zrj1ngj2);
+    Or(a=zrj1ngj2, b=nzrnngj0, out=out);
+}

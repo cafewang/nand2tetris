@@ -1,0 +1,26 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Bit.hdl
+/**
+ * split in[12] to high[3] and low[9]
+ */
+CHIP Splitter4K {
+    IN in[12];
+    OUT high[3], low[9];
+
+    PARTS:
+    And(a=true, b=in[11], out=high[2]);
+    And(a=true, b=in[10], out=high[1]);
+    And(a=true, b=in[9], out=high[0]);
+
+    And(a=true, b=in[8], out=low[8]);
+    And(a=true, b=in[7], out=low[7]);
+    And(a=true, b=in[6], out=low[6]);
+    And(a=true, b=in[5], out=low[5]);
+    And(a=true, b=in[4], out=low[4]);
+    And(a=true, b=in[3], out=low[3]);
+    And(a=true, b=in[2], out=low[2]);
+    And(a=true, b=in[1], out=low[1]);
+    And(a=true, b=in[0], out=low[0]);
+}

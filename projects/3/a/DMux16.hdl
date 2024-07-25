@@ -1,0 +1,21 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/DMux.hdl
+/**
+ * Demultiplexor:
+ * [a, b] = [in, 0] if sel = 0
+ *          [0, in] if sel = 1
+ * a = (not s) and in
+ * b = s and in
+ */
+CHIP DMux16 {
+    IN in[16], sel;
+    OUT a[16], b[16];
+
+    PARTS:
+    Spread16(in=sel, out=selarr);
+    Not16(in=selarr, out=nots);
+    And16(a=nots, b=in, out=a);
+    And16(a=selarr, b=in, out=b);
+}

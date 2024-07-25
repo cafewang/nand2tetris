@@ -1,0 +1,20 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/a/Bit.hdl
+/**
+ * split in[6] to high[3] and low[3]
+ */
+CHIP Spliter64 {
+    IN in[6];
+    OUT high[3], low[3];
+
+    PARTS:
+    And(a=true, b=in[5], out=high[2]);
+    And(a=true, b=in[4], out=high[1]);
+    And(a=true, b=in[3], out=high[0]);
+
+    And(a=true, b=in[2], out=low[2]);
+    And(a=true, b=in[1], out=low[1]);
+    And(a=true, b=in[0], out=low[0]);
+}
